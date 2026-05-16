@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: #e5faff;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(34, 211, 238, 0.16), transparent 26rem),
+    radial-gradient(circle at 86% 12%, rgba(59, 130, 246, 0.13), transparent 28rem),
+    radial-gradient(circle at 70% 88%, rgba(14, 165, 233, 0.11), transparent 30rem),
+    linear-gradient(135deg, #06202c 0%, #0b2638 42%, #07111f 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(236, 254, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(236, 254, 255, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.42), transparent 88%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, transparent 0%, transparent 52%, rgba(0, 0, 0, 0.26) 100%);
+}
+
+input,
+textarea,
+select,
+button {
+  outline: none;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.35);
+  color: white;
+}
