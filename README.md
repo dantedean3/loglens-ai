@@ -1,16 +1,74 @@
-# React + Vite
+# LogLens AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LogLens AI is a full-stack bug triage dashboard that helps developers turn logs, stack traces, and bug reports into organized engineering reports.
 
-Currently, two official plugins are available:
+The app is built around a common workflow: something breaks, a developer pastes the error details, and the system helps summarize what happened, how serious it is, what likely caused it, and what steps should be taken next.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Analyze logs, stack traces, and bug reports
+- Generate structured triage reports with:
+  - Summary
+  - Severity
+  - Category
+  - Likely root cause
+  - Affected component
+  - Suggested fix
+  - Debugging steps
+  - Tests to add
+  - Confidence score
+- Save analyzed issues to Supabase
+- View saved issues in a dashboard
+- Search and filter issue history
+- Update issue status
+- Copy a saved report as Markdown
+- Delete saved issues
+- User authentication with Supabase
+- User-scoped database access with Row Level Security
+- Dashboard metrics and severity chart
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite
+- Tailwind CSS
+- React Router
+- Recharts
+- Lucide React
+- Supabase JavaScript client
+
+### Backend
+
+- Python
+- Flask
+- Flask-CORS
+- python-dotenv
+- Requests
+- Google Gemini API
+
+### Database and Auth
+
+- Supabase Auth
+- Supabase PostgreSQL
+- Row Level Security
+
+## How It Works
+
+1. A user signs in with Supabase Auth.
+2. The user enters an issue title, environment, tech stack, and raw error details.
+3. The React frontend sends the issue details to the Flask backend.
+4. The backend sends the issue context to Gemini and receives a structured triage report.
+5. The frontend displays the report.
+6. The user can save the issue and analysis to Supabase.
+7. Saved issues appear in the dashboard, issue history, and issue detail pages.
+8. Users can update status, copy the report as Markdown, or delete the issue.
+
+## Local Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/loglens-ai.git
+cd loglens-ai
