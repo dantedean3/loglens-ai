@@ -16,7 +16,7 @@ FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
 allowed_origins = [
     "http://localhost:5173",
     FRONTEND_ORIGIN,
-    "https://loglens-5vftytevm-dantedean3s-projects.vercel.app",
+    "https://loglens-ai.vercel.app",
 ]
 
 CORS(
