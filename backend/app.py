@@ -12,7 +12,18 @@ load_dotenv()
 app = Flask(__name__)
 
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
-CORS(app, origins=[FRONTEND_ORIGIN])
+
+allowed_origins = [
+    "http://localhost:5173",
+    FRONTEND_ORIGIN,
+    "https://loglens-ai.vercel.app",
+]
+
+CORS(
+    app,
+    resources={r"/api/*": {"origins": allowed_origins}},
+    supports_credentials=True,
+)
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_MODEL = "gemini-flash-latest"
@@ -44,8 +55,11 @@ def extract_json(text):
     return json.loads(text[start:end + 1])
 
 
-@app.route("/api/analyze", methods=["POST"])
+@app.route("/api/analyze", methods=["OPTIONS", "POST"])
 def analyze_issue():
+    if request.method == "OPTIONS":
+        return jsonify({"status": "ok"}), 200
+
     data = request.get_json()
 
     if not data:
